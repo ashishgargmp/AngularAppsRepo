@@ -1,18 +1,19 @@
-<form #form="ngForm" autocomplete="off">
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
   <div class="form-group">
     <label>Name: </label> 
-    <input name="Name" #Name="ngModel" [(ngModel)]="service.fundFormData.Name" class="form-control" required>
+    <input name="Name" #Name="ngModel" [(ngModel)]="service.formData.Name" class="form-control" required>
+    <div class="validation-error" *ngIf ="Name.invalid && Name.touched">This field is required!</div>
   </div>
 
   <div class="form-group">
     <label>Description: </label>
-    <input name="Desc" #Desc="ngModel" [(ngModel)]="service.fundFormData.Desc" class="form-control">
+    <input name="Desc" #Desc="ngModel" [(ngModel)]="service.formData.Desc" class="form-control">
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Fund type: </label>
-      <select name="Type" #Type="ngModel" [(ngModel)]="service.fundFormData.Type" class="form-control">
+      <select name="Type" #Type="ngModel" [(ngModel)]="service.formData.Type" class="form-control">
         <option>Maintenance</option>
         <option>Sinking</option>
         <option>Corpus</option>
@@ -21,7 +22,7 @@
 
     <div class="form-group col-md-6">
       <label>Fund source: </label>
-      <select name="Source" #Source="ngModel" [(ngModel)]="service.fundFormData.Source" class="form-control">
+      <select name="Source" #Source="ngModel" [(ngModel)]="service.formData.Source" class="form-control">
         <option>Resident</option>
         <option>Vendor</option>
         <option>Bank Interest</option>
@@ -32,12 +33,12 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Amount: </label>
-      <input type="number" name="Amount" #Desc="ngModel" [(ngModel)]="service.fundFormData.Amount" class="form-control">
+      <input type="number" name="Amount" #Desc="ngModel" [(ngModel)]="service.formData.Amount" class="form-control">
     </div>
 
     <div class="form-group col-md-6">
       <label>Frequency: </label>
-      <select name="Frequency" #Source="ngModel" [(ngModel)]="service.fundFormData.Frequency" class="form-control">
+      <select name="Frequency" #Source="ngModel" [(ngModel)]="service.formData.Frequency" class="form-control">
         <option>Monthly</option>
         <option>Quarterly</option>
         <option>Yearly</option>
@@ -46,17 +47,17 @@
     </div>
     <div class="form-group col-md-6">
       <label>Financial Year: </label>
-      <input name="FY" #Desc="ngModel" [(ngModel)]="service.fundFormData.Financial" class="form-control">
+      <input name="FY" #Desc="ngModel" [(ngModel)]="service.formData.Financial" class="form-control">
     </div>
     
     <div class="form-group col-md-6">
       <label>Assessment Year: </label>
-      <input name="AY" #Desc="ngModel" [(ngModel)]="service.fundFormData.Assessment" class="form-control">
+      <input name="AY" #Desc="ngModel" [(ngModel)]="service.formData.Assessment" class="form-control">
     </div>
   </div>
     
   <div class="form-group">
-    <button type="submit" class="btn btn-lg block">SUBMIT</button>
+    <button type="submit" [disabled]="form.invalid" class="btn btn-lg block">SUBMIT</button>
   </div>
   </form>
 
