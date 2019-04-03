@@ -4,7 +4,7 @@ export class Fund {
     Desc: string;
     Type: string;
     Source: string;
-    Amount: number;
+    SetAmount: number;
     DueDate: Date;
     FinancialYear: string;
     AssessmentYear: string;

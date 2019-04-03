@@ -1,4 +1,5 @@
 <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id" class="form-control">
   <div class="form-group">
     <label>Name: </label> 
     <input name="Name" #Name="ngModel" [(ngModel)]="service.formData.Name" class="form-control" required>
@@ -33,7 +34,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Amount: </label>
-      <input type="number" name="Amount" #Desc="ngModel" [(ngModel)]="service.formData.Amount" class="form-control">
+      <input type="number" name="Amount" #Desc="ngModel" [(ngModel)]="service.formData.SetAmount" class="form-control">
     </div>
 
     <div class="form-group col-md-6">

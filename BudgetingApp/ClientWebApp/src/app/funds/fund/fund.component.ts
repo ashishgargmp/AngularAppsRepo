@@ -28,7 +28,7 @@ export class FundComponent implements OnInit {
      Desc: '',
      Type: '',
      Source: '',
-     Amount: null,
+     SetAmount: null,
      DueDate: null,
      FinancialYear: null,
      AssessmentYear: null,
@@ -37,14 +37,26 @@ export class FundComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.insertRecord(form);
+    if (form.value.Id == null) {
+      this.insertRecord(form);
+    } else {
+      this.updateRecord(form);
+    }
   }
 
   insertRecord(form: NgForm) {
-    this.service.postFund(form.value).subscribe(res =>  {
-    this.toastr.success('Inserted Successfully', 'Budget - App');
-    this.resetForm(form);
-  });
+      this.service.postFund(form.value).subscribe(res =>  {
+      this.toastr.success('Inserted Successfully', 'Budget - App');
+      this.resetForm(form);
+      this.service.refreshList();
+    });
   }
 
+  updateRecord(form: NgForm) {
+    this.service.putFund(form.value).subscribe(res => {
+      this.toastr.success('Updated Successfully', 'Budget - App');
+      this.resetForm(form);
+      this.service.refreshList();
+    });
+  }
 }
